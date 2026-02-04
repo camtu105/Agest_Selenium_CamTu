@@ -13,6 +13,7 @@ public class GeneralPage {
 	private final By tabFAQ = By.xpath("//div[@id='menu']//a[@href='/Page/FAQ.cshtml']");
 	private final By lblWelcomeMessage = By.xpath("//div[@class='account']//strong");
 //	private final By lblWelcomeMsg = By.xpath("//div[@id='content']//h1");
+	private final By selectedTab = By.xpath("//li[@class=\"selected\"]");
 	
 	// Elements
 	protected WebElement getTabLogin() {
@@ -23,16 +24,21 @@ public class GeneralPage {
 		return Utilities.waitForElementToBeClickable(tabLogout);
 	}
 	
-	protected boolean isTabLogoutAppeared() {
-		return Constant.WEBDRIVER.findElements(tabLogout).size() > 0;
-	}
-	
 	protected WebElement getTabFAQ() {
 		return Utilities.waitForElementToBeClickable(tabFAQ);
 	}
 	
 	protected WebElement getLblWelcomeMessage() {
 		return Utilities.waitForElementToBeVisible(lblWelcomeMessage);
+	}
+	
+	protected boolean isTabSelected(String tabName) {
+		return Constant.WEBDRIVER.findElement(selectedTab).getText().equals(tabName);
+	}
+	
+	protected boolean isTabAppeared(String tabName) {
+		String xpathString = String.format("//a[span[text()='%s']]", tabName);
+		return Constant.WEBDRIVER.findElements(By.xpath(xpathString)).size() > 0;
 	}
 	
 //	protected WebElement getLblWelcomeMsg() {

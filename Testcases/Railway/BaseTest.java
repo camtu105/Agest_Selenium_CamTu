@@ -6,14 +6,10 @@ import org.testng.annotations.BeforeMethod;
 
 import Constant.Constant;
 
-public abstract class BaseTest {
-	protected User user;
-	
+public abstract class BaseTest {	
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("Pre-condition");
-		
-		user = new User();
 		
 		Constant.WEBDRIVER = new ChromeDriver();
 		

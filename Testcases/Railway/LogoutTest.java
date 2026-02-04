@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 public class LogoutTest extends BaseTest {
 	@Test
 	public void TC06() {
+		User user = new User("gxgwnkpe@sharklasers.com","12345678");
+
 		System.out.println("TC06 - User is redirected to Home page after logging out");
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -23,6 +25,7 @@ public class LogoutTest extends BaseTest {
 		homePage.getTabLogout().click();
 		
 		System.out.println("Verify that Home page displays. \"Log out\" tab is disappeared.");
-		Assert.assertFalse(homePage.isTabLogoutAppeared());
+		Assert.assertTrue(homePage.isTabSelected("Home"));
+		Assert.assertFalse(homePage.isTabAppeared("Log out"));
 	}
 }

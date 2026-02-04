@@ -4,11 +4,6 @@ public class User {
 	private String username;
 	private String password;
 	
-	public User() {
-		this.username = "gxgwnkpe@sharklasers.com";
-		this.password = "12345678";
-	}
-	
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
