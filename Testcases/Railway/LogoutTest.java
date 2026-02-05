@@ -3,7 +3,6 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Common.Utilities;
 import Constant.Constant;
 import Constant.MenuItem;
 
@@ -21,10 +20,10 @@ public class LogoutTest extends BaseTest {
 		loginPage.login(user.getUsername(), user.getPassword());
 		
 		System.out.println("3. Click on \"FAQ\" tab");
-		Utilities.click(homePage.getTabFaqLocator());
+		homePage.gotoTab(MenuItem.FAQ.getText());
 		
 		System.out.println("4. Click on \"Log out\" tab");
-		Utilities.click(homePage.getTabLogoutLocator());
+		homePage.gotoTab(MenuItem.LOGOUT.getText());
 				
 		System.out.println("Verify that Home page displays. \"Log out\" tab is disappeared.");
 		Assert.assertTrue(homePage.isTabSelected(MenuItem.HOME.getText()));

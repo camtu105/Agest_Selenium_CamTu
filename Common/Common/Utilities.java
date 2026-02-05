@@ -54,17 +54,11 @@ public class Utilities {
 		return findElement(locator).getText();
 	}
 	
-	public static void clear(By locator) {
-		waitForElementToBeVisible(locator);
-		scrollToElement(locator);
-		waitForElementToBeClickable(locator);
-		findElement(locator).clear();
-	}
-	
 	public static void sendKeys(By locator, String text) {
 		waitForElementToBeVisible(locator);
 		scrollToElement(locator);
 		waitForElementToBeClickable(locator);
+		findElement(locator).clear();
 		findElement(locator).sendKeys(text);
 	}
 	

@@ -13,26 +13,6 @@ public class LoginPage extends GeneralPage {
 	private final By _lblWelcomeMessage = By.xpath("//div[@class='account']//strong");
 	private final By _lblLoginErrorMsg = By.xpath("//p[@class='message error LoginForm']");
 	
-	public By getTxtUsernameLocator() {
-		return _txtUsername;
-	}
-	
-	public By getTxtPasswordLocator() {
-		return _txtPassword;
-	}
-	
-	public By getBtnLoginLocator() {
-		return _btnLogin;
-	}
-	
-	protected By getLblWelcomeMessageLocator() {
-		return _lblWelcomeMessage;
-	}
-	
-	public By getLblLoginErrorMsgLocator() {
-		return _lblLoginErrorMsg;
-	}
-	
 	// Methods
 	public HomePage login(String username, String password) {
 		Utilities.sendKeys(_txtUsername, username);

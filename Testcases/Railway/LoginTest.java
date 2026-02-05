@@ -4,7 +4,6 @@ import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Common.Utilities;
 import Constant.Constant;
 import Constant.MenuItem;
 
@@ -93,7 +92,6 @@ public class LoginTest extends BaseTest {
 		System.out.println("4. Click on \"Login\" button");
 		System.out.println("5. Repeat step 3 and 4 three more times");
 		for (int i = 0; i < 4; i++) {
-			Utilities.clear(loginPage.getTxtUsernameLocator());
 			loginPage.login(userInvalidPassword.getUsername(), userInvalidPassword.getPassword());
 		}
 	
