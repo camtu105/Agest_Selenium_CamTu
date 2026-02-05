@@ -3,29 +3,31 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Common.Utilities;
+import Constant.Constant;
+import Constant.MenuItem;
+
 public class LogoutTest extends BaseTest {
 	@Test
 	public void TC06() {
-		User user = new User("gxgwnkpe@sharklasers.com","12345678");
-
 		System.out.println("TC06 - User is redirected to Home page after logging out");
+		Account user = new Account(Constant.VALID_EMAIL, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		HomePage homePage = new HomePage();
 		homePage.open();
 		
 		System.out.println("2. Login with valid Email and Password");
-		LoginPage loginPage = homePage.gotoLoginPage();
+		homePage.gotoTab(MenuItem.LOGIN.getText());
 		loginPage.login(user.getUsername(), user.getPassword());
 		
 		System.out.println("3. Click on \"FAQ\" tab");
-		homePage.getTabFAQ().click();
+		Utilities.click(homePage.getTabFaqLocator());
 		
 		System.out.println("4. Click on \"Log out\" tab");
-		homePage.getTabLogout().click();
-		
+		Utilities.click(homePage.getTabLogoutLocator());
+				
 		System.out.println("Verify that Home page displays. \"Log out\" tab is disappeared.");
-		Assert.assertTrue(homePage.isTabSelected("Home"));
-		Assert.assertFalse(homePage.isTabAppeared("Log out"));
+		Assert.assertTrue(homePage.isTabSelected(MenuItem.HOME.getText()));
+		Assert.assertFalse(homePage.isTabAppeared(MenuItem.LOGOUT.getText()));
 	}
 }

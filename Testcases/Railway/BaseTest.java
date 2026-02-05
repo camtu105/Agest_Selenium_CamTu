@@ -7,6 +7,9 @@ import org.testng.annotations.BeforeMethod;
 import Constant.Constant;
 
 public abstract class BaseTest {	
+	HomePage homePage = new HomePage();
+	LoginPage loginPage = new LoginPage();
+	
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("Pre-condition");
