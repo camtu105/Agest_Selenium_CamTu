@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-05T16:38:04 GMT+07:00" name="Default suite" finished-at="2026-02-05T16:38:12 GMT+07:00" duration-ms="8477">
+  <suite started-at="2026-02-06T14:05:50 GMT+07:00" name="Default suite" finished-at="2026-02-06T14:06:36 GMT+07:00" duration-ms="46574">
     <groups>
     </groups>
-    <test started-at="2026-02-05T16:38:04 GMT+07:00" name="Default test" finished-at="2026-02-05T16:38:12 GMT+07:00" duration-ms="8477">
+    <test started-at="2026-02-06T14:05:50 GMT+07:00" name="Default test" finished-at="2026-02-06T14:06:36 GMT+07:00" duration-ms="46574">
       <class name="Railway.LogoutTest">
-        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.LogoutTest@4009e306]" started-at="2026-02-05T16:38:04 GMT+07:00" name="beforeMethod" finished-at="2026-02-05T16:38:05 GMT+07:00" duration-ms="1432" status="PASS">
+        <test-method is-config="true" signature="beforeMethod()[pri:0, instance:Railway.LogoutTest@587e5365]" started-at="2026-02-06T14:05:50 GMT+07:00" name="beforeMethod" finished-at="2026-02-06T14:06:08 GMT+07:00" duration-ms="18820" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method signature="TC06()[pri:0, instance:Railway.LogoutTest@4009e306]" started-at="2026-02-05T16:38:05 GMT+07:00" name="TC06" finished-at="2026-02-05T16:38:12 GMT+07:00" duration-ms="6775" status="PASS">
+        <test-method signature="TC06()[pri:0, instance:Railway.LogoutTest@587e5365]" started-at="2026-02-06T14:06:08 GMT+07:00" name="TC06" finished-at="2026-02-06T14:06:36 GMT+07:00" duration-ms="27474" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC06 -->
-        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.LogoutTest@4009e306]" started-at="2026-02-05T16:38:12 GMT+07:00" name="afterMethod" finished-at="2026-02-05T16:38:12 GMT+07:00" duration-ms="209" status="PASS">
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.LogoutTest@587e5365]" started-at="2026-02-06T14:06:36 GMT+07:00" name="afterMethod" finished-at="2026-02-06T14:06:36 GMT+07:00" duration-ms="222" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->

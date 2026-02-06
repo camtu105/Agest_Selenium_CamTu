@@ -5,12 +5,20 @@ import org.openqa.selenium.By;
 import Common.Utilities;
 
 public class GeneralPage {
+	// Variables
+	private static String _tabLink = "//div[@id='menu']//a[span[text()='%s']]";
+	
 	// Locators
 	private final By _selectedTab = By.xpath("//li[@class=\"selected\"]");
 
 	// Methods
+	public static By getTabLocator(String tabName) {
+		String xpathString = String.format(_tabLink, tabName);
+		return By.xpath(xpathString);
+	}
+	
 	public void gotoTab(String tabName) {
-		Utilities.click(Utilities.getTabLocator(tabName));
+		Utilities.click(getTabLocator(tabName));
 	}
 	
 	protected boolean isTabSelected(String tabName) {
