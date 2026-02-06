@@ -31,11 +31,10 @@ public class GuerrillamailPage {
 		Utilities.waitForElementTextChangedTo(_spanEmailWidget, email + Constant.EMAIL_DOMAIN);
 	}
 	
-	public void activeAccount(String email, String title) {
+	public void activateAccount(String email, String title) {
 		Constant.WEBDRIVER.navigate().refresh();
 		setEmail(email);
 		Utilities.click(By.xpath(String.format(_rowTitle, title)));
 		Utilities.click(_confirmEmailLink);
-		Utilities.switchToLastTab();
 	}
 }

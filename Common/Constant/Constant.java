@@ -11,9 +11,6 @@ public class Constant {
 	public static final Duration TIMEOUT = Duration.ofSeconds(30);
 	
 	public static final String BLANK_VALUE = "";
-	public static final String VALID_EMAIL = "gxgwnkpe@sharklasers.com";
-	public static final String INVALID_EMAIL = "inactive@sharklasers.com";
-	public static final String NEW_EMAIL = "newemail@gmail.com";
 	public static final String EMAIL_DOMAIN = "@sharklasers.com";
 	public static final String VALID_PASSWORD = "12345678";
 	public static final String INVALID_PASSWORD = "123";

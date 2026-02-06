@@ -4,7 +4,6 @@ import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Common.Utilities;
 import Constant.Constant;
 import Constant.MenuItem;
 
@@ -12,22 +11,18 @@ public class LoginTest extends BaseTest {
 	@Test
 	public void TC01() {
 		System.out.println("TC01 - User can log into Railway with valid username and password");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "Welcome " + user.getUsername();
 		
-		System.out.println("Register and active new account");
-		Utilities.switchToNewTab(Constant.RAILWAY_URL);
-		homePage.gotoTab(MenuItem.REGISTER.getText());
-		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
-		Utilities.switchToFirstTab();
-		guerrillamailPage.activeAccount(newEmail, "Please confirm your account");
+		System.out.println("Register and activate new account");
+		registerAccount();
+		activateAccount();
 		
 		System.out.println("Set up screen size");
 		Dimension dimension = new Dimension(1200, 800);
 		Constant.WEBDRIVER.manage().window().setSize(dimension);
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		Utilities.switchToLastTab();
+		homePage.open();
 		
 		System.out.println("2. Click on \"Login\" tab");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
@@ -45,7 +40,6 @@ public class LoginTest extends BaseTest {
 	@Test
 	public void TC02() {
 		System.out.println("TC02 - User cannot login with blank \"Username\" textbox");
-		Account user = new Account(Constant.BLANK_VALUE, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
 
 		System.out.println("1. Navigate to QA Railway Website");
@@ -56,7 +50,7 @@ public class LoginTest extends BaseTest {
 		
 		System.out.println("3. User doesn't type any words into \"Username\" textbox but enter valid information into \"Password\" textbox");	
 		System.out.println("4. Click on \"Login\" button");
-		loginPage.login(user.getUsername(), user.getPassword());
+		loginPage.login(Constant.BLANK_VALUE, user.getPassword());
 		
 		System.out.println("Verify that system prevents logging in and message \"There was a problem with your login and/or errors exist in your form.\" appears.");
 		String actualMsg = loginPage.getLoginErrorMsg();
@@ -67,18 +61,14 @@ public class LoginTest extends BaseTest {
 	@Test
 	public void TC03() {
 		System.out.println("TC03 - User cannot log into Railway with invalid password");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
 
-		System.out.println("Register and active new account");
-		Utilities.switchToNewTab(Constant.RAILWAY_URL);
-		homePage.gotoTab(MenuItem.REGISTER.getText());
-		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
-		Utilities.switchToFirstTab();
-		guerrillamailPage.activeAccount(newEmail, "Please confirm your account");
+		System.out.println("Register and activate new account");
+		registerAccount();
+		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		Utilities.switchToLastTab();
+		homePage.open();
 		
 		System.out.println("2. Click on \"Login\" tab");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
@@ -95,18 +85,14 @@ public class LoginTest extends BaseTest {
 	@Test
 	public void TC04() {
 		System.out.println("TC04 - System shows message when user enters wrong password many times");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
 
-		System.out.println("Register and active new account");
-		Utilities.switchToNewTab(Constant.RAILWAY_URL);
-		homePage.gotoTab(MenuItem.REGISTER.getText());
-		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
-		Utilities.switchToFirstTab();
-		guerrillamailPage.activeAccount(newEmail, "Please confirm your account");
+		System.out.println("Register and activate new account");
+		registerAccount();
+		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		Utilities.switchToLastTab();
+		homePage.open();
 		
 		System.out.println("2. Click on \"Login\" tab");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
@@ -127,16 +113,13 @@ public class LoginTest extends BaseTest {
 	@Test
 	public void TC05() {
 		System.out.println("TC05 - User can't login with an account hasn't been activated");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "Invalid username or password. Please try again.";
 		
-		System.out.println("Register new account");
-		Utilities.switchToNewTab(Constant.RAILWAY_URL);
-		homePage.gotoTab(MenuItem.REGISTER.getText());
-		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
+		System.out.println("Pre-condition: a not-active account is existing");
+		registerAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		Utilities.switchToLastTab();
+		homePage.open();
 		
 		System.out.println("2. Click on \"Login\" tab");
 		homePage.gotoTab(MenuItem.LOGIN.getText());

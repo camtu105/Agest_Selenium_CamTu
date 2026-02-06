@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 
 import Common.Utilities;
 import Constant.Constant;
+import Constant.MenuItem;
 import Guerrillamail.GuerrillamailPage;
 
 public abstract class BaseTest {	
@@ -15,6 +16,7 @@ public abstract class BaseTest {
 	GuerrillamailPage guerrillamailPage = new GuerrillamailPage();
 	
 	protected String newEmail;
+	protected Account user;
 	
 	@BeforeMethod
 	public void beforeMethod() {
@@ -27,8 +29,22 @@ public abstract class BaseTest {
 		guerrillamailPage.open();
 		newEmail = Utilities.randomEmail();
 		guerrillamailPage.setEmail(newEmail);
+		
+		user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 	}
 	
+	public void registerAccount() {
+		System.out.println("Register and active new account");
+		Utilities.switchToNewTab(Constant.RAILWAY_URL);
+		homePage.gotoTab(MenuItem.REGISTER.getText());
+		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
+	}
+	
+	public void activateAccount() {
+		Utilities.switchToFirstTab();
+		guerrillamailPage.activateAccount(newEmail, "Please confirm your account");
+	}
+ 	
 	@AfterMethod
 	public void afterMethod() {
 		System.out.println("Post-condition");

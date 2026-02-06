@@ -3,25 +3,19 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import Common.Utilities;
-import Constant.Constant;
 import Constant.MenuItem;
 
 public class LogoutTest extends BaseTest {
 	@Test
 	public void TC06() {
 		System.out.println("TC06 - User is redirected to Home page after logging out");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		
-		System.out.println("Register and active new account");
-		Utilities.switchToNewTab(Constant.RAILWAY_URL);
-		homePage.gotoTab(MenuItem.REGISTER.getText());
-		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
-		Utilities.switchToFirstTab();
-		guerrillamailPage.activeAccount(newEmail, "Please confirm your account");
+		System.out.println("Register and activate new account");
+		registerAccount();
+		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		Utilities.switchToLastTab();
+		homePage.open();
 		
 		System.out.println("2. Login with valid Email and Password");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
