@@ -9,7 +9,7 @@ public class GeneralPage {
 	private static String _tabLink = "//div[@id='menu']//a[span[text()='%s']]";
 	
 	// Locators
-	private final By _selectedTab = By.xpath("//li[@class=\"selected\"]");
+	private final By _tabSelected = By.xpath("//li[@class=\"selected\"]");
 
 	// Methods
 	public static By getTabLocator(String tabName) {
@@ -22,7 +22,7 @@ public class GeneralPage {
 	}
 	
 	protected boolean isTabSelected(String tabName) {
-		return Utilities.getText(_selectedTab).equals(tabName);
+		return Utilities.getText(_tabSelected).equals(tabName);
 	}
 
 	protected boolean isTabAppeared(String tabName) {

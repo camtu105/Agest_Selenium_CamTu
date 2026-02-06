@@ -15,7 +15,7 @@ public class GuerrillamailPage {
 	private final By _btnSet = By.xpath("//button[@class='save button small']");
 	private final By _spanEmailWidget = By.xpath("//span[@id='email-widget']");
 	private final By _checkboxAlias = By.xpath("//input[@id='use-alias']");
-	private final By _confirmEmailLink = By.xpath("//div[@class='email_body']//a");
+	private final By _linkConfirmedEmail = By.xpath("//div[@class='email_body']//a");
 	
 	// Methods
 	public GuerrillamailPage open() {
@@ -35,6 +35,6 @@ public class GuerrillamailPage {
 		Constant.WEBDRIVER.navigate().refresh();
 		setEmail(email);
 		Utilities.click(By.xpath(String.format(_rowTitle, title)));
-		Utilities.click(_confirmEmailLink);
+		Utilities.click(_linkConfirmedEmail);
 	}
 }
