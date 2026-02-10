@@ -3,6 +3,7 @@ package Railway;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Common.Utilities;
 import Constant.MenuItem;
 
 public class LogoutTest extends BaseTest {
@@ -15,7 +16,7 @@ public class LogoutTest extends BaseTest {
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		homePage.open();
+		Utilities.switchToLastTab();
 		
 		System.out.println("2. Login with valid Email and Password");
 		homePage.gotoTab(MenuItem.LOGIN.getText());

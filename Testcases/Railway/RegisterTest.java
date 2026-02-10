@@ -18,7 +18,7 @@ public class RegisterTest extends BaseTest {
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		homePage.open();
+		Utilities.switchToLastTab();
 		
 		System.out.println("2. Click on \"Register\" tab");
 		homePage.gotoTab(MenuItem.REGISTER.getText());
@@ -83,7 +83,7 @@ public class RegisterTest extends BaseTest {
 		
 		System.out.println("7. Open email with subject containing \"Please confirm your account\"  and the email of the new account at step 3");
 		System.out.println("8. Click on the activate link");
-		guerrillamailPage.activateAccount(newEmail, "Please confirm your account");
+		guerrillamailPage.clickEmailTitle(newEmail, "Please confirm your account");
 		Utilities.switchToLastTab();
 		
 		System.out.println("Verify that system redirects to Railways page and message \"Registration Confirmed! You can now log in to the site\" is shown");

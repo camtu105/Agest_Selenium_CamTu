@@ -11,10 +11,10 @@ public class RegisterPage {
 	private final By _txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
 	private final By _txtPid = By.xpath("//input[@id='pid']");
 	private final By _btnRegister = By.xpath("//input[@value='Register']");
-	private final By _lblRegErrMeg = By.xpath("//div[@id='content']//p[@class='message error']");
-	private final By _lblPwValErrMeg = By.xpath("//li[@class='password']//label[@class='validation-error']");
+	private final By _lblRegisterErrMeg = By.xpath("//div[@id='content']//p[@class='message error']");
+	private final By _lblPasswordValErrMeg = By.xpath("//li[@class='password']//label[@class='validation-error']");
 	private final By _lblPidValErrMeg = By.xpath("//li[@class='pid-number']//label[@class='validation-error']");
-	private final By _lblRegConfirmed = By.xpath("//div[@id='content']//p");
+	private final By _lblRegisterConfirm = By.xpath("//div[@id='content']//p");
 	
 	// Methods
 	public HomePage register(String email, String password, String pid) {
@@ -23,16 +23,15 @@ public class RegisterPage {
 		Utilities.sendKeys(_txtConfirmPassword, password);
 		Utilities.sendKeys(_txtPid, pid);
 		Utilities.click(_btnRegister);
-		
 		return new HomePage();
 	}
 	
 	public String getLblRegErrMeg() {
-		return Utilities.getText(_lblRegErrMeg);
+		return Utilities.getText(_lblRegisterErrMeg);
 	}
 	
 	public String getLblPwValErrMsg() {
-		return Utilities.getText(_lblPwValErrMeg);
+		return Utilities.getText(_lblPasswordValErrMeg);
 	}
 	
 	public String getLblPidErrMsg() {
@@ -40,6 +39,6 @@ public class RegisterPage {
 	}
 	
 	public String getLblRegConfirmed() {
-		return Utilities.getText(_lblRegConfirmed);
+		return Utilities.getText(_lblRegisterConfirm);
 	}
 }

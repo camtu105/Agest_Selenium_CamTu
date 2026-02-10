@@ -13,9 +13,9 @@ public class GuerrillamailPage {
 	private final By _spanEmail = By.xpath("//span[@id='inbox-id']");
 	private final By _txtEmail = By.xpath("//span[@id='inbox-id']//input");
 	private final By _btnSet = By.xpath("//button[@class='save button small']");
-	private final By _spanEmailWidget = By.xpath("//span[@id='email-widget']");
-	private final By _checkboxAlias = By.xpath("//input[@id='use-alias']");
-	private final By _linkConfirmedEmail = By.xpath("//div[@class='email_body']//a");
+	private final By _linkEmail = By.xpath("//div[@class='email_body']//a");
+	private final By _alertEmailSet = By.xpath("//div[contains(@id,'status_alert')]");
+
 	
 	// Methods
 	public GuerrillamailPage open() {
@@ -24,17 +24,16 @@ public class GuerrillamailPage {
 	}
 	
 	public void setEmail(String email) {
-		Utilities.click(_checkboxAlias);
 		Utilities.click(_spanEmail);
 		Utilities.sendKeys(_txtEmail, email);
 		Utilities.click(_btnSet);
-		Utilities.waitForElementTextChangedTo(_spanEmailWidget, email + Constant.EMAIL_DOMAIN);
+		Utilities.waitForElementToBeStable(_alertEmailSet);
 	}
 	
-	public void activateAccount(String email, String title) {
+	public void clickEmailTitle(String email, String title) {
 		Constant.WEBDRIVER.navigate().refresh();
-		setEmail(email);
+		if (!Utilities.getText(_spanEmail).equals(email)) setEmail(email);
 		Utilities.click(By.xpath(String.format(_rowTitle, title)));
-		Utilities.click(_linkConfirmedEmail);
+		Utilities.click(_linkEmail);
 	}
 }

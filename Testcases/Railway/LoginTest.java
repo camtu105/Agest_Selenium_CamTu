@@ -4,6 +4,7 @@ import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import Common.Utilities;
 import Constant.Constant;
 import Constant.MenuItem;
 
@@ -22,7 +23,7 @@ public class LoginTest extends BaseTest {
 		Constant.WEBDRIVER.manage().window().setSize(dimension);
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		homePage.open();
+		Utilities.switchToLastTab();
 		
 		System.out.println("2. Click on \"Login\" tab");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
@@ -68,7 +69,7 @@ public class LoginTest extends BaseTest {
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		homePage.open();
+		Utilities.switchToLastTab();
 		
 		System.out.println("2. Click on \"Login\" tab");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
@@ -92,7 +93,7 @@ public class LoginTest extends BaseTest {
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
-		homePage.open();
+		Utilities.switchToLastTab();
 		
 		System.out.println("2. Click on \"Login\" tab");
 		homePage.gotoTab(MenuItem.LOGIN.getText());

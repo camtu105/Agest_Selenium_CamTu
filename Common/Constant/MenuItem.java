@@ -1,12 +1,12 @@
 package Constant;
 
 public enum MenuItem {
-	
 	HOME("Home"),
 	FAQ("FAQ"),
 	REGISTER("Register"),
 	LOGIN("Login"),
-	LOGOUT("Log out");
+	LOGOUT("Log out"),
+	BOOK_TICKET("Book ticket");
 	
 	private final String displayText;
 	

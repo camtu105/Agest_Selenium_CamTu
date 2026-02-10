@@ -1,5 +1,6 @@
 package Common;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Constant.Constant;
@@ -26,39 +28,40 @@ public class Utilities {
 	}
 	
 	/* SCROLL */ 
-	public static void scrollToElement(By locator) {
+	public static void waitAndScrollToElement(By locator) {
+		waitForPageLoad();
+		waitForElementToBeStable(locator);
 		JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
 		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", findElement(locator));
 	}
 	
 	/* WAIT */
-	public static By waitForElementToBeVisible(By locator) {
+	public static void waitForPageLoad() {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT);
+		wait.until (driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+	}
+	
+	public static By waitForElementToBeStable(By locator) {
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT);
+		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		return locator;
 	}
 	
 	public static By waitForElementToBeClickable(By locator) {
+		waitAndScrollToElement(locator);
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT);
 		wait.until(ExpectedConditions.elementToBeClickable(locator));
 		return locator;
 	}
-	
-	public static void waitForElementTextChangedTo(By locator, String text) {
-		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT);
-		wait.until(ExpectedConditions.textToBe(locator, text));
-	}
 		
 	/* ACTIONS */
 	public static String getText(By locator) {
-		waitForElementToBeVisible(locator);
-		scrollToElement(locator);
+		waitAndScrollToElement(locator);
 		return findElement(locator).getText();
 	}
 	
 	public static void sendKeys(By locator, String text) {
-		waitForElementToBeVisible(locator);
-		scrollToElement(locator);
 		waitForElementToBeClickable(locator);
 		findElement(locator).clear();
 		findElement(locator).sendKeys(text);
@@ -66,9 +69,19 @@ public class Utilities {
 	
 	public static void click(By locator) {
 		waitForElementToBeClickable(locator);
-		scrollToElement(locator);
-		waitForElementToBeClickable(locator);
 		findElement(locator).click();
+	}
+	
+	public static void select(By locator, String value) {
+		waitForElementToBeClickable(locator);
+		Select dropdown = new Select(findElement(locator));
+		dropdown.selectByContainsVisibleText(value);
+	}
+	
+	public static String getTextSelected(By locator) {
+		waitAndScrollToElement(locator);
+		Select dropdown = new Select(findElement(locator));
+		return dropdown.getFirstSelectedOption().getText();
 	}
 		
 	/* METHODS */
@@ -84,8 +97,14 @@ public class Utilities {
 	public static String randomEmail() {
 		LocalDateTime dateTime = LocalDateTime.now();
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dMyy_Hms");
-		String email = "us_" + dateTime.format(format).toString();
-		return email;
+		return "us_" + dateTime.format(format).toString();
+	}
+	
+	public static String returnDateAfter(String date, int numberOfDaysAfter) {
+	    DateTimeFormatter format = DateTimeFormatter.ofPattern("M/d/yyyy");
+		LocalDate dateParse = LocalDate.parse(date, format);
+		dateParse.plusDays(numberOfDaysAfter);
+	    return dateParse.format(format).toString();
 	}
 	
 	/* SWITCH TO */

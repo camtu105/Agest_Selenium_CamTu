@@ -13,6 +13,8 @@ public abstract class BaseTest {
 	HomePage homePage = new HomePage();
 	LoginPage loginPage = new LoginPage();
 	RegisterPage registerPage = new RegisterPage();
+	ResetPasswordPage resetPasswordPage = new ResetPasswordPage();
+	BookTicketPage bookTicketPage = new BookTicketPage();
 	GuerrillamailPage guerrillamailPage = new GuerrillamailPage();
 	
 	protected String newEmail;
@@ -34,7 +36,6 @@ public abstract class BaseTest {
 	}
 	
 	public void registerAccount() {
-		System.out.println("Register and active new account");
 		Utilities.switchToNewTab(Constant.RAILWAY_URL);
 		homePage.gotoTab(MenuItem.REGISTER.getText());
 		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
@@ -42,7 +43,7 @@ public abstract class BaseTest {
 	
 	public void activateAccount() {
 		Utilities.switchToFirstTab();
-		guerrillamailPage.activateAccount(newEmail, "Please confirm your account");
+		guerrillamailPage.clickEmailTitle(newEmail, "Please confirm your account");
 	}
  	
 	@AfterMethod
