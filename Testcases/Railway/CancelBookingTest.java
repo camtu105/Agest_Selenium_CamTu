@@ -8,15 +8,17 @@ import org.testng.annotations.Test;
 
 import Common.Utilities;
 import Constant.BookTicketDropDown;
+import Constant.Constant;
 import Constant.MenuItem;
 
 public class CancelBookingTest extends BaseTest {
 	@Test
 	public void TC16() {
 		System.out.println("User can check price of ticket from Timetable");
-		
+		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
+
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount();
+		registerAccount(user);
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -45,6 +47,6 @@ public class CancelBookingTest extends BaseTest {
 		myTicketPage.cancelTicket(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern("M/d/yyyy")));
 		
 		System.out.println("Verify that The canceled ticket is disappeared.");
-		Assert.assertFalse(Utilities.isDisplayed(myTicketPage.getTicketRowXpath(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern("M/d/yyyy")))));
+		Assert.assertFalse(Utilities.isDisplayed(myTicketPage.getTicketRowXpath(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)))));
 	}
 }

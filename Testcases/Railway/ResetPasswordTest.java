@@ -11,10 +11,11 @@ public class ResetPasswordTest extends BaseTest {
 	@Test
 	public void TC10() {
 		System.out.println("TC10 - Reset password shows error if the new password is same as current");
+		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "The new password cannot be the same with the current password";
 
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount();
+		registerAccount(user);
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -22,7 +23,7 @@ public class ResetPasswordTest extends BaseTest {
 		
 		System.out.println("2. Click on \"Forgot Password page\" link");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
-		homePage.gotoResetPasswordPage();
+		loginPage.gotoResetPasswordPage();
 		
 		System.out.println("3. Enter the email address of the activated account");
 		resetPasswordPage.enterEmail(newEmail + Constant.EMAIL_DOMAIN);
@@ -43,7 +44,7 @@ public class ResetPasswordTest extends BaseTest {
 		
 		System.out.println("8. Input same password into 2 fields  \"new password\" and \"confirm password\"");
 		System.out.println("9. Click Reset Password");
-		resetPasswordPage.resetPassword(Constant.VALID_PASSWORD, Constant.VALID_PASSWORD);
+		resetPasswordPage.resetPassword(user.getPassword(), user.getPassword());
 		
 		System.out.println("Verify that Message \"The new password cannot be the same with the current password\" is shown");
 		String actualMsg = resetPasswordPage.getLblMsg();
@@ -53,11 +54,12 @@ public class ResetPasswordTest extends BaseTest {
 	@Test
 	public void TC11() {
 		System.out.println("TC11 - Reset password shows error if the new password and confirm password doesn't match");
+		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "Could not reset password. Please correct the errors and try again.";
 		String expectedConfirmPasswordMsg = "The password confirmation did not match the new password.";
 
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount();
+		registerAccount(user);
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -65,7 +67,7 @@ public class ResetPasswordTest extends BaseTest {
 		
 		System.out.println("2. Click on \"Forgot Password page\" link");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
-		homePage.gotoResetPasswordPage();
+		loginPage.gotoResetPasswordPage();
 		
 		System.out.println("3. Enter the email address of the activated account");
 		resetPasswordPage.enterEmail(newEmail + Constant.EMAIL_DOMAIN);
@@ -86,7 +88,7 @@ public class ResetPasswordTest extends BaseTest {
 		
 		System.out.println("8. Input different input into 2 fields  \"new password\" and \"confirm password\"");
 		System.out.println("9. Click Reset Password");
-		resetPasswordPage.resetPassword(Constant.VALID_PASSWORD + Constant.INVALID_PASSWORD, Constant.VALID_PASSWORD );
+		resetPasswordPage.resetPassword(user.getPassword() + user.getPassword(), user.getPassword());
 		
 		System.out.println("Verify that Error message \"Could not reset password. Please correct the errors and try again.\" displays above the form.");		
 		String actualMsg = resetPasswordPage.getLblMsg();

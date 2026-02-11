@@ -106,7 +106,7 @@ public class Utilities {
 	}
 	
 	public static String returnDateAfter(String date, int numberOfDaysAfter) {
-	    DateTimeFormatter format = DateTimeFormatter.ofPattern("M/d/yyyy");
+	    DateTimeFormatter format = DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT);
 		LocalDate dateParse = LocalDate.parse(date, format);
 		dateParse.plusDays(numberOfDaysAfter);
 	    return dateParse.format(format).toString();

@@ -10,7 +10,6 @@ public class GeneralPage {
 	
 	// Locators
 	private final By _tabSelected = By.xpath("//li[@class=\"selected\"]");
-	private final By _linkResetPassword = By.xpath("//a[@href='/Account/ForgotPassword.cshtml']");
 
 	// Methods
 	public By getTabLocator(String tabName) {
@@ -20,10 +19,6 @@ public class GeneralPage {
 	
 	public void gotoTab(String tabName) {
 		Utilities.click(getTabLocator(tabName));
-	}
-	
-	public void gotoResetPasswordPage() {
-		Utilities.click(_linkResetPassword);
 	}
 	
 	protected boolean isTabSelected(String tabName) {

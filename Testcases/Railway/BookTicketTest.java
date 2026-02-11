@@ -8,18 +8,21 @@ import org.testng.annotations.Test;
 
 import Common.Utilities;
 import Constant.BookTicketDropDown;
+import Constant.Constant;
 import Constant.Destination;
 import Constant.MenuItem;
 import Constant.SeatType;
+import Constant.TimeTableAction;
 
 public class BookTicketTest extends BaseTest {
 	@Test
 	public void TC12() {
 		System.out.println("User can book 1 ticket at a time");
+		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount();
+		registerAccount(user);
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -55,10 +58,11 @@ public class BookTicketTest extends BaseTest {
 	@Test
 	public void TC13() {
 		System.out.println("User can book many tickets at a time");
+		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount();
+		registerAccount(user);
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -94,10 +98,11 @@ public class BookTicketTest extends BaseTest {
 	@Test
 	public void TC14() {
 		System.out.println("User can check price of ticket from Timetable");
+		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedHeader = "Ticket price from Đà Nẵng to Sài Gòn";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount();
+		registerAccount(user);
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -114,7 +119,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("Before booking ticket - Create ticket object with required information");
 		Ticket ticket = new Ticket(Destination.DA_NANG.getText(),
 							Destination.SAI_GON.getText());
-		timeTablePage.clickRowValue(ticket, "check price");
+		timeTablePage.clickRowValue(ticket, TimeTableAction.CHECK_PRICE.getText());
 		
 		System.out.println("Verify that \"Ticket Price\" page is loaded.");
 		Assert.assertTrue(homePage.isTabSelected(MenuItem.TICKET_PRICE.getText()));
@@ -131,10 +136,11 @@ public class BookTicketTest extends BaseTest {
 	@Test
 	public void TC15() {
 		System.out.println("User can book ticket from Timetable");
+		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount();
+		registerAccount(user);
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -151,7 +157,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("Before click on book ticket - Create ticket object with required information");
 		Ticket ticket = new Ticket(Destination.QUANG_NGAI.getText(),
 							Destination.HUE.getText());
-		timeTablePage.clickRowValue(ticket, "book ticket");
+		timeTablePage.clickRowValue(ticket, TimeTableAction.BOOK_TICKET.getText());
 		
 		System.out.println("Verify that Book ticket form is shown with the corrected \"depart from\" and \"Arrive at\"");
 		Assert.assertEquals(bookTicketPage.getSelectedValue(BookTicketDropDown.DEPART_FROM.getText()), ticket.getDepartFrom());
@@ -161,7 +167,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("6. Select Ticket amount = 5");
 		System.out.println("7. Click on \"Book ticket\" button");
 		System.out.println("Before booking ticket - Update ticket object with required information and update seat type information");
-		ticket.setDepartDate(Utilities.returnDateAfter(LocalDate.now().format(DateTimeFormatter.ofPattern("M/d/yyyy")), 1));
+		ticket.setDepartDate(Utilities.returnDateAfter(LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)), 1));
 		ticket.setSeatType(bookTicketPage.getSelectedValue(BookTicketDropDown.SEAT_TYPE.getText()));
 		ticket.setTicketAmount("5");
 		bookTicketPage.bookTicketFromTimetable(ticket);

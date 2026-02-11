@@ -9,6 +9,7 @@ public class Constant {
 	public static final String RAILWAY_URL = "http://saferailway.somee.com/Page/HomePage.cshtml";
 	public static final String GUERRILLA_URL = "https://www.guerrillamail.com/inbox";
 	public static final Duration TIMEOUT = Duration.ofSeconds(30);
+	public static final String DATE_TICKET_FORMAT = "M/d/yyyy";
 	
 	public static final String BLANK_VALUE = "";
 	public static final String EMAIL_DOMAIN = "@sharklasers.com";

@@ -24,7 +24,6 @@ public abstract class BaseTest {
 	GuerrillamailPage guerrillamailPage = new GuerrillamailPage();
 	
 	protected String newEmail;
-	protected Account user;
 	
 	@Parameters("browser")
 	@BeforeMethod
@@ -34,16 +33,15 @@ public abstract class BaseTest {
 		else if ("firefox".equalsIgnoreCase(runBrowser)) Constant.WEBDRIVER = new FirefoxDriver();
 		else throw new RuntimeException("Unsupported browser: " + runBrowser);
 	
+		System.out.println("Pre-condition");
 		Constant.WEBDRIVER.manage().window().maximize();
 		
-		System.out.println("Pre-condition");
 		guerrillamailPage.open();
 		newEmail = Utilities.randomEmail();
 		guerrillamailPage.setEmail(newEmail);
-		user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 	}
 	
-	public void registerAccount() {
+	public void registerAccount(Account user) {
 		Utilities.switchToNewTab(Constant.RAILWAY_URL);
 		homePage.gotoTab(MenuItem.REGISTER.getText());
 		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());

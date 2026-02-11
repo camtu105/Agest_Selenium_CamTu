@@ -12,6 +12,7 @@ public class LoginPage extends GeneralPage {
 	private final By _btnLogin = By.xpath("//input[@value='login']");
 	private final By _lblWelcomeMsg = By.xpath("//div[@class='account']//strong");
 	private final By _lblLoginErrMsg = By.xpath("//p[@class='message error LoginForm']");
+	private final By _linkResetPassword = By.xpath("//a[@href='/Account/ForgotPassword.cshtml']");
 	
 	// Methods
 	public HomePage login(String username, String password) {
@@ -31,5 +32,9 @@ public class LoginPage extends GeneralPage {
 	
 	public boolean isLoggedIn() {
 		return isTabAppeared(MenuItem.LOGOUT.getText());
+	}
+	
+	public void gotoResetPasswordPage() {
+		Utilities.click(_linkResetPassword);
 	}
 }

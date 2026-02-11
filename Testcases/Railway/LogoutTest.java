@@ -4,15 +4,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Common.Utilities;
+import Constant.Constant;
 import Constant.MenuItem;
 
 public class LogoutTest extends BaseTest {
 	@Test
 	public void TC06() {
 		System.out.println("TC06 - User is redirected to Home page after logging out");
+		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		
 		System.out.println("Register and activate new account");
-		registerAccount();
+		registerAccount(user);
 		activateAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
