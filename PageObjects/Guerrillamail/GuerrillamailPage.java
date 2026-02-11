@@ -7,7 +7,7 @@ import Constant.Constant;
 
 public class GuerrillamailPage {
 	// Variables
-	private String _rowTitle = "//tbody[@id='email_list']//tr[contains(., '%s')]";
+	private String _rowWithTitle = "//tbody[@id='email_list']//tr[contains(., '%s')]";
 	
 	// Locators
 	private final By _spanEmail = By.xpath("//span[@id='inbox-id']");
@@ -15,7 +15,6 @@ public class GuerrillamailPage {
 	private final By _btnSet = By.xpath("//button[@class='save button small']");
 	private final By _linkEmail = By.xpath("//div[@class='email_body']//a");
 	private final By _alertEmailSet = By.xpath("//div[contains(@id,'status_alert')]");
-
 	
 	// Methods
 	public GuerrillamailPage open() {
@@ -33,7 +32,7 @@ public class GuerrillamailPage {
 	public void clickEmailTitle(String email, String title) {
 		Constant.WEBDRIVER.navigate().refresh();
 		if (!Utilities.getText(_spanEmail).equals(email)) setEmail(email);
-		Utilities.click(By.xpath(String.format(_rowTitle, title)));
+		Utilities.click(By.xpath(String.format(_rowWithTitle, title)));
 		Utilities.click(_linkEmail);
 	}
 }

@@ -6,7 +6,10 @@ public enum MenuItem {
 	REGISTER("Register"),
 	LOGIN("Login"),
 	LOGOUT("Log out"),
-	BOOK_TICKET("Book ticket");
+	BOOK_TICKET("Book ticket"),
+	TIMETABLE("Timetable"),
+	TICKET_PRICE("Ticket price"),
+	MY_TICKET("My ticket");
 	
 	private final String displayText;
 	

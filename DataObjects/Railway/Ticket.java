@@ -15,6 +15,11 @@ public class Ticket {
 		this.ticketAmount = ticketAmount;
 	}
 	
+	public Ticket(String departFrom, String arriveAt) {
+		this.departFrom = departFrom;
+		this.arriveAt = arriveAt;
+	}
+	
 	public String getDepartDate() {
 		return this.departDate;
 	}

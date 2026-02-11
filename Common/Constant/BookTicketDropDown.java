@@ -1,6 +1,6 @@
 package Constant;
 
-public enum BookTicketSelect {
+public enum BookTicketDropDown {
 	DEPART_DATE("Date"),
 	DEPART_FROM("DepartStation"),
 	ARRIVE_AT("ArriveStation"),
@@ -9,7 +9,7 @@ public enum BookTicketSelect {
 	
 	private final String displayText;
 	
-	private BookTicketSelect (String displayText) {
+	private BookTicketDropDown (String displayText) {
 		this.displayText = displayText;
 	}
 	

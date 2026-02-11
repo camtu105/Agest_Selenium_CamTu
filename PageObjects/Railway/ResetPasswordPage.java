@@ -6,16 +6,16 @@ import Common.Utilities;
 
 public class ResetPasswordPage {
 	// Variables
-	private static String _formPasswordChange = "//legend[text()='Password Change Form']";
+	private final String _formPasswordChange = "//legend[text()='Password Change Form']";
 	
 	// Locator
-	private static By _txtEmail = By.xpath("//input[@id='email']");
-	private static By _btnSendInstructions = By.xpath("//fieldset//input[@value='Send Instructions']");
-	private static By _txtNewPassword = By.xpath("//input[@id='newPassword']");
-	private static By _txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
-	private static By _btnResetPassword = By.xpath("//input[@value='Reset Password']");
-	private static By _lblMsg = By.xpath("//p[contains(@class,'message')]");
-	private static By _lblConfirmPasswordErrorMsg = By.xpath("//li[@class='confirm-password']//label[@class='validation-error']");
+	private final By _txtEmail = By.xpath("//input[@id='email']");
+	private final By _btnSendInstructions = By.xpath("//fieldset//input[@value='Send Instructions']");
+	private final By _txtNewPassword = By.xpath("//input[@id='newPassword']");
+	private final By _txtConfirmPassword = By.xpath("//input[@id='confirmPassword']");
+	private final By _btnResetPassword = By.xpath("//input[@value='Reset Password']");
+	private final By _lblMsg = By.xpath("//p[contains(@class,'message')]");
+	private final By _lblConfirmPasswordErrorMsg = By.xpath("//li[@class='confirm-password']//label[@class='validation-error']");
 	
 	// Methods
 	public void enterEmail(String email) {

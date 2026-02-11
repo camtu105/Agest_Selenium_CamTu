@@ -6,14 +6,14 @@ import Common.Utilities;
 
 public class GeneralPage {
 	// Variables
-	private static String _tabLink = "//div[@id='menu']//a[span[text()='%s']]";
+	private final String _tabLink = "//div[@id='menu']//a[span[text()='%s']]";
 	
 	// Locators
 	private final By _tabSelected = By.xpath("//li[@class=\"selected\"]");
 	private final By _linkResetPassword = By.xpath("//a[@href='/Account/ForgotPassword.cshtml']");
 
 	// Methods
-	public static By getTabLocator(String tabName) {
+	public By getTabLocator(String tabName) {
 		String xpathString = String.format(_tabLink, tabName);
 		return By.xpath(xpathString);
 	}

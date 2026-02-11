@@ -54,6 +54,11 @@ public class Utilities {
 		wait.until(ExpectedConditions.elementToBeClickable(locator));
 		return locator;
 	}
+	
+	public static void waitForNewState(WebElement webElement) { 
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT); 
+		wait.until(ExpectedConditions.stalenessOf(webElement));
+	}
 		
 	/* ACTIONS */
 	public static String getText(By locator) {
