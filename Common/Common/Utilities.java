@@ -56,8 +56,17 @@ public class Utilities {
 	}
 	
 	public static void waitForNewState(WebElement webElement) { 
-		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT); 
-		wait.until(ExpectedConditions.stalenessOf(webElement));
+		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT);
+		try {
+			wait.until(ExpectedConditions.stalenessOf(webElement));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	public static void waitForTitleExist(String title) {
+		 WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT);
+		 wait.until(ExpectedConditions.titleIs(title));
 	}
 		
 	/* ACTIONS */

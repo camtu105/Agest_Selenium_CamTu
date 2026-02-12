@@ -4,10 +4,7 @@ import org.openqa.selenium.By;
 
 import Common.Utilities;
 
-public class ResetPasswordPage {
-	// Variables
-	private final String _formPasswordChange = "//legend[text()='Password Change Form']";
-	
+public class ResetPasswordPage extends GeneralPage {
 	// Locator
 	private final By _txtEmail = By.xpath("//input[@id='email']");
 	private final By _btnSendInstructions = By.xpath("//fieldset//input[@value='Send Instructions']");
@@ -16,7 +13,8 @@ public class ResetPasswordPage {
 	private final By _btnResetPassword = By.xpath("//input[@value='Reset Password']");
 	private final By _lblMsg = By.xpath("//p[contains(@class,'message')]");
 	private final By _lblConfirmPasswordErrorMsg = By.xpath("//li[@class='confirm-password']//label[@class='validation-error']");
-	
+	private final String _formPasswordChange = "//legend[text()='Password Change Form']";
+
 	// Methods
 	public void enterEmail(String email) {
 		Utilities.sendKeys(_txtEmail, email);

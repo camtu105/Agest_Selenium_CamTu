@@ -15,18 +15,7 @@ import Constant.SeatType;
 public class CancelBookingTest extends BaseTest {
 	@Test
 	public void TC16() {
-		System.out.println("User can check price of ticket from Timetable");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
-
-		System.out.println("Pre-condition: an actived account is existing");
-		registerActiveAccount(user);
-		
-		System.out.println("1. Navigate to QA Railway Website");
-		Utilities.switchToLastTab();
-		
-		System.out.println("2. Login with a valid account ");
-		homePage.gotoTab(MenuItem.LOGIN.getText());
-		loginPage.login(user.getUsername(), user.getPassword());
+		System.out.println("TC16 - User can check price of ticket from Timetable");
 		
 		System.out.println("Before booking ticket - Create ticket object");
 		homePage.gotoTab(MenuItem.BOOK_TICKET.getText());
@@ -35,6 +24,16 @@ public class CancelBookingTest extends BaseTest {
 							Destination.NHA_TRANG.getText(),
 							SeatType.SOFT_BED.getText(),
 							"1");
+
+		System.out.println("Pre-condition: an actived account is existing");
+		Account user = registerActiveAccount();
+		
+		System.out.println("1. Navigate to QA Railway Website");
+		Utilities.switchToLastTab();
+		
+		System.out.println("2. Login with a valid account ");
+		homePage.gotoTab(MenuItem.LOGIN.getText());
+		loginPage.login(user.getUsername(), user.getPassword());
 		
 		System.out.println("3. Book a ticket");
 		bookTicketPage.bookTicket(ticket);
@@ -47,6 +46,7 @@ public class CancelBookingTest extends BaseTest {
 		myTicketPage.cancelTicket(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern("M/d/yyyy")));
 		
 		System.out.println("Verify that The canceled ticket is disappeared.");
-		Assert.assertFalse(Utilities.isDisplayed(myTicketPage.getTicketRowXpath(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)))));
+		Assert.assertFalse(Utilities.isDisplayed(myTicketPage.getTicketRowXpath(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)))),
+							"The canceled ticket is still appeared");
 	}
 }

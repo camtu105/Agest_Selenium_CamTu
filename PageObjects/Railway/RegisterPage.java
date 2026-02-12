@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 import Common.Utilities;
 
-public class RegisterPage {
+public class RegisterPage extends GeneralPage {
 	// Locators
 	private final By _txtEmail = By.xpath("//input[@id='email']");
 	private final By _txtPassword = By.xpath("//input[@id='password']");
@@ -15,6 +15,7 @@ public class RegisterPage {
 	private final By _lblPasswordValErrMeg = By.xpath("//li[@class='password']//label[@class='validation-error']");
 	private final By _lblPidValErrMeg = By.xpath("//li[@class='pid-number']//label[@class='validation-error']");
 	private final By _lblRegisterConfirm = By.xpath("//div[@id='content']//p");
+	private final By _lblPageMainContent = By.xpath("//div[@id='content']//h1");
 	
 	// Methods
 	public HomePage register(String email, String password, String pid) {
@@ -40,5 +41,9 @@ public class RegisterPage {
 	
 	public String getLblRegConfirmed() {
 		return Utilities.getText(_lblRegisterConfirm);
+	}
+	
+	public String getLblPageMainContent() {
+		return Utilities.getText(_lblPageMainContent);
 	}
 }

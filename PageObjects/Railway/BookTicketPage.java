@@ -5,17 +5,14 @@ import org.openqa.selenium.WebElement;
 
 import Common.Utilities;
 import Constant.BookTicketDropDown;
-import Constant.TicketTableHeader;
 
-public class BookTicketPage {
-	// Variables
-	private final String _dropdownBookTicketForm = "//form//select[@name='%s']";
-	private final String _ticketValues = "(//tr[@class='OddRow']//td)";
-	private final String _valuePosition = "[count(//tr//th[text()='%s']//preceding-sibling::th) + 1]";
-	
+public class BookTicketPage extends GeneralPage {
 	// Locators
 	private final By _btnBookTicket = By.xpath("//input[@value='Book ticket']");
 	private final By _lblSuccessMsg = By.xpath("//div[@id='content']//h1");
+	private final String _dropdownBookTicketForm = "//form//select[@name='%s']";
+	private final String _ticketValues = "(//tr[@class='OddRow']//td)";
+	private final String _valuePosition = "[count(//tr//th[text()='%s']//preceding-sibling::th) + 1]";
 	
 	// Methods
 	public String getSelectedValue(String dropdownName) {
@@ -30,11 +27,7 @@ public class BookTicketPage {
 		WebElement arriveAt = Utilities.findElement(By.xpath(String.format(_dropdownBookTicketForm, BookTicketDropDown.ARRIVE_AT.getText())));
 		selectValue(BookTicketDropDown.DEPART_DATE.getText(), ticket.getDepartDate());
 		selectValue(BookTicketDropDown.DEPART_FROM.getText(), ticket.getDepartFrom());
-		try {
-			Utilities.waitForNewState(arriveAt);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		Utilities.waitForNewState(arriveAt);
 		selectValue(BookTicketDropDown.ARRIVE_AT.getText(), ticket.getArriveAt());
 		selectValue(BookTicketDropDown.SEAT_TYPE.getText(), ticket.getSeatType());
 		selectValue(BookTicketDropDown.TICKET_AMOUNT.getText(), ticket.getTicketAmount());
@@ -50,13 +43,8 @@ public class BookTicketPage {
 		return Utilities.getText(By.xpath(_ticketValues + valuePosition));
 	}
 	
-	public boolean isInformationCorrect(Ticket ticket) {
-		Boolean isDateCorrect = getColValue(TicketTableHeader.DEPART_DATE.getText()).equals(ticket.getDepartDate());
-		Boolean isDepartFromCorrect = getColValue(TicketTableHeader.DEPART_FROM.getText()).equals(ticket.getDepartFrom());
-		Boolean isArriveAtCorrect = getColValue(TicketTableHeader.ARRIVE_AT.getText()).equals(ticket.getArriveAt());
-		Boolean isSeatTypeCorrect = getColValue(TicketTableHeader.SEAT_TYPE.getText()).equals(ticket.getSeatType());
-		Boolean isAmountCorrect = getColValue(TicketTableHeader.TICKET_AMOUNT.getText()).equals(ticket.getTicketAmount());
-		return isDateCorrect && isDepartFromCorrect && isArriveAtCorrect && isSeatTypeCorrect && isAmountCorrect;
+	public boolean isTicketValueCorrect(String colName, String ticketValue) {
+		return getColValue(colName).equals(ticketValue);
 	}
 	
 	public void bookTicketFromTimetable(Ticket ticket) {

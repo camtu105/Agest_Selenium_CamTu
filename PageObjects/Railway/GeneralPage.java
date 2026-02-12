@@ -5,11 +5,9 @@ import org.openqa.selenium.By;
 import Common.Utilities;
 
 public class GeneralPage {
-	// Variables
-	private final String _tabLink = "//div[@id='menu']//a[span[text()='%s']]";
-	
 	// Locators
 	private final By _tabSelected = By.xpath("//li[@class=\"selected\"]");
+	private final String _tabLink = "//div[@id='menu']//a[span[text()='%s']]";
 
 	// Methods
 	public By getTabLocator(String tabName) {
@@ -26,7 +24,7 @@ public class GeneralPage {
 	}
 
 	protected boolean isTabAppeared(String tabName) {
-		String xpathString = String.format("//a[span[text()='%s']]", tabName);
+		String xpathString = String.format(_tabLink, tabName);
 		return Utilities.isDisplayed(xpathString);
 	}
 }

@@ -22,9 +22,7 @@ public abstract class BaseTest {
 	TicketPricePage ticketPricePage = new TicketPricePage();
 	MyTicketPage myTicketPage = new MyTicketPage();
 	GuerrillamailPage guerrillamailPage = new GuerrillamailPage();
-	
-	protected String newEmail;
-	
+		
 	@Parameters("browser")
 	@BeforeMethod
 	public void beforeMethod(@Optional("chrome") String browser) {
@@ -35,24 +33,36 @@ public abstract class BaseTest {
 	
 		System.out.println("Pre-condition");
 		Constant.WEBDRIVER.manage().window().maximize();
-		
+	}
+	
+	public String createEmail() {
 		guerrillamailPage.open();
-		newEmail = Utilities.randomEmail();
+		String newEmail = Utilities.randomEmail();
 		guerrillamailPage.setEmail(newEmail);
+		return newEmail;
 	}
 	
-	public void registerAccount(Account user) {
+	public Account registerAccount() {
+		String email = createEmail();
+		Account user = new Account(email + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
+		
 		Utilities.switchToNewTab(Constant.RAILWAY_URL);
 		homePage.gotoTab(MenuItem.REGISTER.getText());
 		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
+		return user;
 	}
 	
-	public void registerActiveAccount(Account user) {
+	public Account registerActiveAccount() {
+		String email = createEmail();
+		Account user = new Account(email + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
+		
 		Utilities.switchToNewTab(Constant.RAILWAY_URL);
 		homePage.gotoTab(MenuItem.REGISTER.getText());
 		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
+		
 		Utilities.switchToFirstTab();
-		guerrillamailPage.clickEmailTitle(newEmail, "Please confirm your account");
+		guerrillamailPage.clickEmailTitle(user.getUsername(), "Please confirm your account");
+		return user;
 	}
  	
 	@AfterMethod

@@ -4,17 +4,13 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Common.Utilities;
-import Constant.Constant;
 import Constant.MenuItem;
 
 public class LogoutTest extends BaseTest {
 	@Test
 	public void TC06() {
 		System.out.println("TC06 - User is redirected to Home page after logging out");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
-		
-		System.out.println("Register and activate new account");
-		registerActiveAccount(user);
+		Account user = registerActiveAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -30,7 +26,7 @@ public class LogoutTest extends BaseTest {
 		homePage.gotoTab(MenuItem.LOGOUT.getText());
 				
 		System.out.println("Verify that Home page displays. \"Log out\" tab is disappeared.");
-		Assert.assertTrue(homePage.isTabSelected(MenuItem.HOME.getText()));
-		Assert.assertFalse(homePage.isTabAppeared(MenuItem.LOGOUT.getText()));
+		Assert.assertTrue(homePage.isTabSelected(MenuItem.HOME.getText()), "Home page is not displayed as expected");
+		Assert.assertFalse(homePage.isTabAppeared(MenuItem.LOGOUT.getText()), "Log out tab is not disappeared as expected");
 	}
 }

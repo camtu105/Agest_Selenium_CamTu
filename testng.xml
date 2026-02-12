@@ -15,7 +15,7 @@
       <class name="Railway.RegisterTest"/>-->
       <class name="Railway.LoginTest">
       	<methods>
-      		<include name="TC02" />
+      		<include name="TC04" />
       	</methods>
       </class>
     </classes>

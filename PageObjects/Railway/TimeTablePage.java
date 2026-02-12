@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 
 import Common.Utilities;
 
-public class TimeTablePage {
-	// Variables
+public class TimeTablePage extends GeneralPage {
+	// Locators
 	private final String _linkValue = "//td[text()='%s']//following-sibling::td[text()='%s']//following-sibling::td//a[text()='%s']";
 	
 	// Methods

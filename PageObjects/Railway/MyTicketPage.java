@@ -5,8 +5,8 @@ import org.openqa.selenium.By;
 import Common.Utilities;
 import Constant.Constant;
 
-public class MyTicketPage {
-	// Variables
+public class MyTicketPage extends GeneralPage {
+	// Locators
 	private final String _valueDepartStation = "//td[text()='%s']";
 	private final String _valuePrevious = "//following-sibling::td[text()='%s']";
 	private final String _btnCancel = "//following-sibling::td//input[@value='Cancel']";

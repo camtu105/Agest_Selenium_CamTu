@@ -11,11 +11,10 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void TC07() {
 		System.out.println("TC07 - User can't create account with an already in-use email");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		String expectedMsg = "This email address is already in use.";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerActiveAccount(user);
+		Account user = registerActiveAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -35,7 +34,7 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void TC08() {
 		System.out.println("TC08 - User can't create account while password and PID fields are empty");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.BLANK_VALUE, Constant.BLANK_VALUE);
+		String newEmail = createEmail();
 		String expectedMsg = "There're errors in the form. Please correct the errors and try again.";
 		String expectedPwMsg = "Invalid password length";
 		String expectedPidMsg = "Invalid ID length";
@@ -48,7 +47,7 @@ public class RegisterTest extends BaseTest {
 		
 		System.out.println("3. Enter valid email address and leave other fields empty");
 		System.out.println("4. Click on \"Register\" button");
-		registerPage.register(user.getUsername(), user.getPassword(), user.getPid());
+		registerPage.register(newEmail + Constant.EMAIL_DOMAIN, Constant.BLANK_VALUE, Constant.BLANK_VALUE);
 		
 		System.out.println("Verify that Message \"There're errors in the form. Please correct the errors and try again.\" appears above the form.");
 		String actualMsg = registerPage.getLblRegErrMeg();
@@ -66,18 +65,30 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void TC09() {
 		System.out.println("TC09 - User create and activate account");
-		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
+		String newEmail = createEmail();
+		String expectedThankForRegisterMsg = "Thank you for registering your account";
 		String expectedMsg = "Registration Confirmed! You can now log in to the site.";
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToNewTab(Constant.RAILWAY_URL);
 		
-		System.out.println("2. Click on \"Register\" tab");
-		homePage.gotoTab(MenuItem.REGISTER.getText());
+		System.out.println("Verify that Home page is shown with guide containing href \"create an account\" to \"Register\" page");
+		Assert.assertTrue(homePage.isTabSelected(MenuItem.HOME.getText()), "Home page is not shown as expected");
+		Assert.assertTrue(homePage.isLinkCreateAccountDisplayed(), "Create an account href is not contained as expected");
+		
+		System.out.println("2. Click on \"Create an account\"");
+		homePage.clickCreateAccountLink();
+		
+		System.out.println("Verify that Register page is shown");
+		Assert.assertTrue(homePage.isTabSelected(MenuItem.REGISTER.getText()), "Register page is not shown as expected");
 		
 		System.out.println("3. Enter valid information into all fields");
 		System.out.println("4. Click on \"Register\" button");
-		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
+		registerPage.register(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
+		
+		System.out.println("Verify that \"Thank you for registering your account\" is shown");
+		String actualThankForRegisterMsg = registerPage.getLblPageMainContent();
+		Assert.assertEquals(actualThankForRegisterMsg, expectedThankForRegisterMsg, "Thank for registering message is not displayed as expected");
 		
 		System.out.println("5. Get email information (webmail address, mailbox and password) and navigate to that webmail");
 		System.out.println("6. Login to the mailbox");
