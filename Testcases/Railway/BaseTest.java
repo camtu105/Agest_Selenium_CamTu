@@ -47,7 +47,10 @@ public abstract class BaseTest {
 		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
 	}
 	
-	public void activateAccount() {
+	public void registerActiveAccount(Account user) {
+		Utilities.switchToNewTab(Constant.RAILWAY_URL);
+		homePage.gotoTab(MenuItem.REGISTER.getText());
+		registerPage.register(user.getUsername(), user.getPassword(), user.getPassword());
 		Utilities.switchToFirstTab();
 		guerrillamailPage.clickEmailTitle(newEmail, "Please confirm your account");
 	}

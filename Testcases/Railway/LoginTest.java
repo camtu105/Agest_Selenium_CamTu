@@ -16,8 +16,7 @@ public class LoginTest extends BaseTest {
 		String expectedMsg = "Welcome " + user.getUsername();
 		
 		System.out.println("Register and activate new account");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("Set up screen size");
 		Dimension dimension = new Dimension(1200, 800);
@@ -46,8 +45,7 @@ public class LoginTest extends BaseTest {
 		String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
 
 		System.out.println("Register and activate new account");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -72,8 +70,7 @@ public class LoginTest extends BaseTest {
 		String expectedMsg = "There was a problem with your login and/or errors exist in your form.";
 
 		System.out.println("Register and activate new account");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -97,8 +94,7 @@ public class LoginTest extends BaseTest {
 		String expectedMsg = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
 
 		System.out.println("Register and activate new account");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();

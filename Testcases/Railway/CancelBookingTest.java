@@ -7,9 +7,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Common.Utilities;
-import Constant.BookTicketDropDown;
 import Constant.Constant;
+import Constant.Destination;
 import Constant.MenuItem;
+import Constant.SeatType;
 
 public class CancelBookingTest extends BaseTest {
 	@Test
@@ -18,8 +19,7 @@ public class CancelBookingTest extends BaseTest {
 		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -30,11 +30,11 @@ public class CancelBookingTest extends BaseTest {
 		
 		System.out.println("Before booking ticket - Create ticket object");
 		homePage.gotoTab(MenuItem.BOOK_TICKET.getText());
-		Ticket ticket = new Ticket(bookTicketPage.getSelectedValue(BookTicketDropDown.DEPART_DATE.getText()),
-							bookTicketPage.getSelectedValue(BookTicketDropDown.DEPART_FROM.getText()),
-							bookTicketPage.getSelectedValue(BookTicketDropDown.ARRIVE_AT.getText()),
-							bookTicketPage.getSelectedValue(BookTicketDropDown.SEAT_TYPE.getText()),
-							bookTicketPage.getSelectedValue(BookTicketDropDown.TICKET_AMOUNT.getText()));
+		Ticket ticket = new Ticket(Utilities.returnDateAfter(LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)), 1),
+							Destination.SAI_GON.getText(),
+							Destination.NHA_TRANG.getText(),
+							SeatType.SOFT_BED.getText(),
+							"1");
 		
 		System.out.println("3. Book a ticket");
 		bookTicketPage.bookTicket(ticket);

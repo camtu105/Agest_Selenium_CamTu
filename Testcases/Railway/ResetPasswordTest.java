@@ -15,8 +15,7 @@ public class ResetPasswordTest extends BaseTest {
 		String expectedMsg = "The new password cannot be the same with the current password";
 
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -59,8 +58,7 @@ public class ResetPasswordTest extends BaseTest {
 		String expectedConfirmPasswordMsg = "The password confirmation did not match the new password.";
 
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();

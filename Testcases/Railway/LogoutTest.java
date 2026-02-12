@@ -14,8 +14,7 @@ public class LogoutTest extends BaseTest {
 		Account user = new Account(newEmail + Constant.EMAIL_DOMAIN, Constant.VALID_PASSWORD, Constant.VALID_PID);
 		
 		System.out.println("Register and activate new account");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();

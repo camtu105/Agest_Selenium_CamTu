@@ -22,8 +22,7 @@ public class BookTicketTest extends BaseTest {
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -62,8 +61,7 @@ public class BookTicketTest extends BaseTest {
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -102,8 +100,7 @@ public class BookTicketTest extends BaseTest {
 		String expectedHeader = "Ticket price from Đà Nẵng to Sài Gòn";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
@@ -140,8 +137,7 @@ public class BookTicketTest extends BaseTest {
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
-		registerAccount(user);
-		activateAccount();
+		registerActiveAccount(user);
 		
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
