@@ -7,7 +7,7 @@ import Constant.Constant;
 
 public class HomePage extends GeneralPage {
 	// Locators
-	private final String _linkCreateAccount = "//a[@href='/Account/Register.cshtml\']";
+	private final By _linkCreateAccount = By.xpath("//a[@href='/Account/Register.cshtml\']");
 	
 	// Methods
 	public HomePage open() {
@@ -20,6 +20,6 @@ public class HomePage extends GeneralPage {
 	}
 	
 	public void clickCreateAccountLink() {
-		Utilities.click(By.xpath(_linkCreateAccount));
+		Utilities.click(_linkCreateAccount);
 	}
 }

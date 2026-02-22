@@ -46,7 +46,7 @@ public class CancelBookingTest extends BaseTest {
 		myTicketPage.cancelTicket(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern("M/d/yyyy")));
 		
 		System.out.println("Verify that The canceled ticket is disappeared.");
-		Assert.assertFalse(Utilities.isDisplayed(myTicketPage.getTicketRowXpath(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)))),
+		Assert.assertFalse(Utilities.isDisplayed(myTicketPage.getTicketRowLocator(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)))),
 							"The canceled ticket is still appeared");
 	}
 }

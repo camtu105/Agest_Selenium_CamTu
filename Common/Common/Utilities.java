@@ -39,6 +39,7 @@ public class Utilities {
 	public static void waitForPageLoad() {
 		WebDriverWait wait = new WebDriverWait(Constant.WEBDRIVER, Constant.TIMEOUT);
 		wait.until (driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+		closeAd();
 	}
 	
 	public static By waitForElementToBeStable(By locator) {
@@ -99,11 +100,10 @@ public class Utilities {
 	}
 		
 	/* METHODS */
-	public static boolean isDisplayed(String element) {
+	public static boolean isDisplayed(By locator) {
 		try {
-			return Constant.WEBDRIVER.findElement(By.xpath(element)).isDisplayed();
+			return Constant.WEBDRIVER.findElement(locator).isDisplayed();
 		} catch (Exception e) {
-			// TODO: handle exception
 			return false;
 		}
 	}
@@ -136,5 +136,38 @@ public class Utilities {
 		Set<String> windows = Constant.WEBDRIVER.getWindowHandles();
 		String lastWindow = windows.toArray(new String[0])[windows.size() - 1];
 		Constant.WEBDRIVER.switchTo().window(lastWindow);
+	}
+	
+	public static void closeAd() {
+	    JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+
+	    try {
+	        js.executeScript(
+	            "let adExists = document.querySelector(\"iframe[src*='google'], .adsbygoogle, .adpub-drawer-root\");" +
+	            "if (!adExists) return;" +
+
+	            "let btn = document.querySelector(\"[aria-label='Close']\");" +
+	            "if (btn) { btn.click(); }" +
+
+	            "document.querySelectorAll('button').forEach(el => {" +
+	            "   let txt = el.innerText ? el.innerText.toLowerCase() : '';" +
+	            "   if (txt.includes('close')) el.click();" +
+	            "});" +
+
+	            "document.querySelectorAll('div, span').forEach(el => {" +
+	            "   if (el.innerText === '×' || el.innerText === '✕') el.click();" +
+	            "});" +
+
+	            "document.querySelectorAll('div, span, button').forEach(el => {" +
+	            "   let txt = el.innerText ? el.innerText.toLowerCase() : '';" +
+	            "   if (txt.includes('skip') || txt.includes('dismiss') || txt.includes('next')) el.click();" +
+	            "});" +
+
+	            "document.querySelectorAll('iframe[src*=\"google\"], .adsbygoogle, .adpub-drawer-root')" +
+	            ".forEach(el => el.remove());"
+	        );
+	    } catch (Exception e) {
+	        System.out.println("No ads detected");
+	    }
 	}
 }

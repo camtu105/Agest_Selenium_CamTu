@@ -13,7 +13,7 @@ public class ResetPasswordPage extends GeneralPage {
 	private final By _btnResetPassword = By.xpath("//input[@value='Reset Password']");
 	private final By _lblMsg = By.xpath("//p[contains(@class,'message')]");
 	private final By _lblConfirmPasswordErrorMsg = By.xpath("//li[@class='confirm-password']//label[@class='validation-error']");
-	private final String _formPasswordChange = "//legend[text()='Password Change Form']";
+	private final By _formPasswordChange = By.xpath("//legend[text()='Password Change Form']");
 
 	// Methods
 	public void enterEmail(String email) {

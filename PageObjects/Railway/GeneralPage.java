@@ -9,14 +9,10 @@ public class GeneralPage {
 	private final By _tabSelected = By.xpath("//li[@class=\"selected\"]");
 	private final String _tabLink = "//div[@id='menu']//a[span[text()='%s']]";
 
-	// Methods
-	public By getTabLocator(String tabName) {
-		String xpathString = String.format(_tabLink, tabName);
-		return By.xpath(xpathString);
-	}
-	
+	// Methods	
 	public void gotoTab(String tabName) {
-		Utilities.click(getTabLocator(tabName));
+		String xpathTab = String.format(_tabLink, tabName);
+		Utilities.click(By.xpath(xpathTab));
 	}
 	
 	protected boolean isTabSelected(String tabName) {
@@ -24,7 +20,7 @@ public class GeneralPage {
 	}
 
 	protected boolean isTabAppeared(String tabName) {
-		String xpathString = String.format(_tabLink, tabName);
-		return Utilities.isDisplayed(xpathString);
+		String xpathTab = String.format(_tabLink, tabName);
+		return Utilities.isDisplayed(By.xpath(xpathTab));
 	}
 }
