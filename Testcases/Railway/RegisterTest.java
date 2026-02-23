@@ -11,6 +11,8 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void TC07() {
 		System.out.println("TC07 - User can't create account with an already in-use email");
+		
+		System.out.println("Define verified message");
 		String expectedMsg = "This email address is already in use.";
 		
 		System.out.println("Pre-condition: an actived account is existing");
@@ -24,7 +26,7 @@ public class RegisterTest extends BaseTest {
 		
 		System.out.println("3. Enter information of the created account in Pre-condition");
 		System.out.println("4. Click on \"Register\" button");
-		registerPage.register(user.getUsername(), Constant.VALID_PASSWORD, Constant.VALID_PID);
+		registerPage.register(user.getUsername(), user.getPassword(), user.getPid());
 		
 		System.out.println("Verify that error message \"This email address is already in use.\" displays above the form.");
 		String actualMsg = registerPage.getLblRegErrMeg();
@@ -34,7 +36,11 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void TC08() {
 		System.out.println("TC08 - User can't create account while password and PID fields are empty");
+		
+		System.out.println("Before testing - Set up test data");
 		String newEmail = createEmail();
+		
+		System.out.println("Define verified messages");
 		String expectedMsg = "There're errors in the form. Please correct the errors and try again.";
 		String expectedPwMsg = "Invalid password length";
 		String expectedPidMsg = "Invalid ID length";
@@ -65,7 +71,11 @@ public class RegisterTest extends BaseTest {
 	@Test
 	public void TC09() {
 		System.out.println("TC09 - User create and activate account");
+		
+		System.out.println("Before testing - Set up test data");
 		String newEmail = createEmail();
+		
+		System.out.println("Define verified messages");
 		String expectedThankForRegisterMsg = "Thank you for registering your account";
 		String expectedMsg = "Registration Confirmed! You can now log in to the site.";
 		

@@ -19,6 +19,14 @@ public class BookTicketTest extends BaseTest {
 	@Test
 	public void TC12() {
 		System.out.println("TC12 - User can book 1 ticket at a time");
+		
+		System.out.println("Before testing - Set up test data");
+		String departFrom = Destination.NHA_TRANG.getText();
+		String arriveAt = Destination.HUE.getText();
+		String seatType = SeatType.SOFT_BED_AIR.getText();
+		String ticketAmount = "1";
+		
+		System.out.println("Define verified message");
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
@@ -27,7 +35,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
 		
-		System.out.println("2. Login with a valid account ");
+		System.out.println("2. Login with a valid account");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
 		loginPage.login(user.getUsername(), user.getPassword());
 		
@@ -38,14 +46,9 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("5. Select Depart from \"Nha Trang\" and Arrive at \"Huế\"");
 		System.out.println("6. Select \"Soft bed with air conditioner\" for \"Seat type\"");
 		System.out.println("7. Select \"1\" for \"Ticket amount\"");
-		System.out.println("Before booking ticket - Create ticket object with required information");
-		Ticket ticket = new Ticket(Utilities.returnDateAfter(bookTicketPage.getSelectedValue(BookTicketDropDown.DEPART_DATE.getText()), 2),
-							Destination.NHA_TRANG.getText(),
-							Destination.HUE.getText(),
-							SeatType.SOFT_BED_AIR.getText(),
-							"1");
-		
 		System.out.println("8. Click on \"Book ticket\" button");
+		String departDate = Utilities.returnDateAfter(bookTicketPage.getSelectedValue(BookTicketDropDown.DEPART_DATE.getText()), 2);
+		Ticket ticket = new Ticket(departDate, departFrom, arriveAt, seatType, ticketAmount);
 		bookTicketPage.bookTicket(ticket);
 		
 		System.out.println("Verify that Message \"Ticket booked successfully!\" displays.");
@@ -63,6 +66,14 @@ public class BookTicketTest extends BaseTest {
 	@Test
 	public void TC13() {
 		System.out.println("TC13 - User can book many tickets at a time");
+		
+		System.out.println("Before testing - Set up test data");
+		String departFrom = Destination.NHA_TRANG.getText();
+		String arriveAt = Destination.SAI_GON.getText();
+		String seatType = SeatType.SOFT_SEAT_AIR.getText();
+		String ticketAmount = "5";
+		
+		System.out.println("Define verified message");
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
@@ -71,25 +82,20 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
 		
-		System.out.println("2. Login with a valid account ");
+		System.out.println("2. Login with a valid account");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
 		loginPage.login(user.getUsername(), user.getPassword());
 		
 		System.out.println("3. Click on \"Book ticket\" tab");
 		homePage.gotoTab(MenuItem.BOOK_TICKET.getText());
 		
-		System.out.println("4. Select the next 2 days from \"Depart date\"");
-		System.out.println("5. Select Depart from \"Nha Trang\" and Arrive at \"Huế\"");
-		System.out.println("6. Select \"Soft bed with air conditioner\" for \"Seat type\"");
-		System.out.println("7. Select \"1\" for \"Ticket amount\"");
-		System.out.println("Before booking ticket - Create ticket object with required information");
-		Ticket ticket = new Ticket(Utilities.returnDateAfter(bookTicketPage.getSelectedValue(BookTicketDropDown.DEPART_DATE.getText()), 25),
-							Destination.NHA_TRANG.getText(),
-							Destination.SAI_GON.getText(),
-							SeatType.SOFT_SEAT_AIR.getText(),
-							"5");
-		
+		System.out.println("4. Select the next 25 days from \"Depart date\"");
+		System.out.println("5. Select \"Nha Trang\" for \"Depart from\" and \"Sài Gòn\" for \"Arrive at\".");
+		System.out.println("6. Select \"Soft seat with air conditioner\" for \"Seat type\"");
+		System.out.println("7. Select \"5\" for \"Ticket amount\"");
 		System.out.println("8. Click on \"Book ticket\" button");
+		String departDate = Utilities.returnDateAfter(bookTicketPage.getSelectedValue(BookTicketDropDown.DEPART_DATE.getText()), 25);
+		Ticket ticket = new Ticket(departDate, departFrom, arriveAt, seatType, ticketAmount);
 		bookTicketPage.bookTicket(ticket);
 		
 		System.out.println("Verify that Message \"Ticket booked successfully!\" displays.");
@@ -107,6 +113,12 @@ public class BookTicketTest extends BaseTest {
 	@Test
 	public void TC14() {
 		System.out.println("TC14 - User can check price of ticket from Timetable");
+		
+		System.out.println("Before testing - Set up test data");
+		String departFrom = Destination.DA_NANG.getText();
+		String arriveAt = Destination.SAI_GON.getText();
+		
+		System.out.println("Define verified message");
 		String expectedHeader = "Ticket price from Đà Nẵng to Sài Gòn";
 		
 		System.out.println("Pre-condition: an actived account is existing");
@@ -115,7 +127,7 @@ public class BookTicketTest extends BaseTest {
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
 		
-		System.out.println("2. Login with a valid account ");
+		System.out.println("2. Login with a valid account");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
 		loginPage.login(user.getUsername(), user.getPassword());
 		
@@ -123,9 +135,7 @@ public class BookTicketTest extends BaseTest {
 		homePage.gotoTab(MenuItem.TIMETABLE.getText());
 		
 		System.out.println("4. Click on \"check price\" link of the route from \"Đà Nẵng\" to \"Sài Gòn\"");
-		System.out.println("Before booking ticket - Create ticket object with required information");
-		Ticket ticket = new Ticket(Destination.DA_NANG.getText(),
-							Destination.SAI_GON.getText());
+		Ticket ticket = new Ticket(departFrom, arriveAt);
 		timeTablePage.clickRowValue(ticket, TimeTableAction.CHECK_PRICE.getText());
 		
 		System.out.println("Verify that \"Ticket Price\" page is loaded.");
@@ -143,6 +153,14 @@ public class BookTicketTest extends BaseTest {
 	@Test
 	public void TC15() {
 		System.out.println("TC15 - User can book ticket from Timetable");
+		
+		System.out.println("Before testing - Set up test data");
+		String departFrom = Destination.QUANG_NGAI.getText();
+		String arriveAt = Destination.HUE.getText();
+		String departDate = Utilities.returnDateAfter(LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)), 1);
+		String ticketAmount = "5";
+		
+		System.out.println("Define verified message");
 		String expectedMsg = "Ticket booked successfully!";
 		
 		System.out.println("Pre-condition: an actived account is existing");
@@ -159,9 +177,7 @@ public class BookTicketTest extends BaseTest {
 		homePage.gotoTab(MenuItem.TIMETABLE.getText());
 		
 		System.out.println("4. Click on book ticket of route \"Quảng Ngãi\" to \"Huế\"");
-		System.out.println("Before click on book ticket - Create ticket object with required information");
-		Ticket ticket = new Ticket(Destination.QUANG_NGAI.getText(),
-							Destination.HUE.getText());
+		Ticket ticket = new Ticket(departFrom, arriveAt);
 		timeTablePage.clickRowValue(ticket, TimeTableAction.BOOK_TICKET.getText());
 		
 		System.out.println("Verify that Book ticket form is shown with the corrected \"depart from\" and \"Arrive at\"");
@@ -170,11 +186,12 @@ public class BookTicketTest extends BaseTest {
 		
 		System.out.println("5. Select Depart date = tomorrow");
 		System.out.println("6. Select Ticket amount = 5");
+		String seatType = bookTicketPage.getSelectedValue(BookTicketDropDown.SEAT_TYPE.getText());
+		ticket.setDepartDate(departDate);
+		ticket.setTicketAmount(ticketAmount);
+		ticket.setSeatType(seatType); // Every required fields must have value
+		
 		System.out.println("7. Click on \"Book ticket\" button");
-		System.out.println("Before booking ticket - Update ticket object with required information and update seat type information");
-		ticket.setDepartDate(Utilities.returnDateAfter(LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)), 1));
-		ticket.setSeatType(bookTicketPage.getSelectedValue(BookTicketDropDown.SEAT_TYPE.getText()));
-		ticket.setTicketAmount("5");
 		bookTicketPage.bookTicketFromTimetable(ticket);
 		
 		System.out.println("Verify that Message \"Ticket booked successfully!\" displays.");

@@ -10,6 +10,8 @@ public class LogoutTest extends BaseTest {
 	@Test
 	public void TC06() {
 		System.out.println("TC06 - User is redirected to Home page after logging out");
+		
+		System.out.println("Before testing - Set up test data");
 		Account user = registerActiveAccount();
 		
 		System.out.println("1. Navigate to QA Railway Website");
@@ -27,6 +29,6 @@ public class LogoutTest extends BaseTest {
 				
 		System.out.println("Verify that Home page displays. \"Log out\" tab is disappeared.");
 		Assert.assertTrue(homePage.isTabSelected(MenuItem.HOME.getText()), "Home page is not displayed as expected");
-		Assert.assertFalse(homePage.isTabAppeared(MenuItem.LOGOUT.getText()), "Log out tab is not disappeared as expected");
+		Assert.assertFalse(homePage.isTabAppeared(MenuItem.LOGOUT.getText()), "\"Log out\" tab is not disappeared as expected");
 	}
 }

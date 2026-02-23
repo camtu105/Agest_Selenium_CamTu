@@ -15,15 +15,19 @@ import Constant.SeatType;
 public class CancelBookingTest extends BaseTest {
 	@Test
 	public void TC16() {
-		System.out.println("TC16 - User can check price of ticket from Timetable");
+		System.out.println("TC16 - User can cancel a ticket");
+		
+		System.out.println("Before testing - Set up test data");
+		String bookDate = LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)); // Today
+		String departDate = Utilities.returnDateAfter(bookDate, 3); // 3 days after
+		String departFrom = Destination.SAI_GON.getText();
+		String arriveAt = Destination.NHA_TRANG.getText();
+		String seatType = SeatType.SOFT_BED.getText();
+		String ticketAmount = "1";
 		
 		System.out.println("Before booking ticket - Create ticket object");
 		homePage.gotoTab(MenuItem.BOOK_TICKET.getText());
-		Ticket ticket = new Ticket(Utilities.returnDateAfter(LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)), 1),
-							Destination.SAI_GON.getText(),
-							Destination.NHA_TRANG.getText(),
-							SeatType.SOFT_BED.getText(),
-							"1");
+		Ticket ticket = new Ticket(departDate, departFrom, arriveAt, seatType, ticketAmount);
 
 		System.out.println("Pre-condition: an actived account is existing");
 		Account user = registerActiveAccount();
@@ -31,7 +35,7 @@ public class CancelBookingTest extends BaseTest {
 		System.out.println("1. Navigate to QA Railway Website");
 		Utilities.switchToLastTab();
 		
-		System.out.println("2. Login with a valid account ");
+		System.out.println("2. Login with a valid account");
 		homePage.gotoTab(MenuItem.LOGIN.getText());
 		loginPage.login(user.getUsername(), user.getPassword());
 		
@@ -43,10 +47,10 @@ public class CancelBookingTest extends BaseTest {
 		
 		System.out.println("5. Click on \"Cancel\" button of ticket which user want to cancel.");
 		System.out.println("6. Click on \"OK\" button on Confirmation message \"Are you sure?\"");
-		myTicketPage.cancelTicket(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern("M/d/yyyy")));
+		myTicketPage.cancelTicket(ticket, bookDate);
 		
 		System.out.println("Verify that The canceled ticket is disappeared.");
-		Assert.assertFalse(Utilities.isDisplayed(myTicketPage.getTicketRowLocator(ticket, LocalDate.now().format(DateTimeFormatter.ofPattern(Constant.DATE_TICKET_FORMAT)))),
+		Assert.assertFalse(Utilities.isDisplayed(myTicketPage.getTicketRowLocator(ticket, bookDate)),
 							"The canceled ticket is still appeared");
 	}
 }

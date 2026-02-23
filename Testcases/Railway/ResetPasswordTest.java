@@ -10,6 +10,8 @@ public class ResetPasswordTest extends BaseTest {
 	@Test
 	public void TC10() {
 		System.out.println("TC10 - Reset password shows error if the new password is same as current");
+		
+		System.out.println("Define verified message");
 		String expectedMsg = "The new password cannot be the same with the current password";
 
 		System.out.println("Pre-condition: an actived account is existing");
@@ -51,6 +53,8 @@ public class ResetPasswordTest extends BaseTest {
 	@Test
 	public void TC11() {
 		System.out.println("TC11 - Reset password shows error if the new password and confirm password doesn't match");
+		
+		System.out.println("Define verified messages");
 		String expectedMsg = "Could not reset password. Please correct the errors and try again.";
 		String expectedConfirmPasswordMsg = "The password confirmation did not match the new password.";
 

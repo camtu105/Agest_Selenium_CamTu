@@ -13,7 +13,6 @@ public class LoginPage extends GeneralPage {
 	private final By _lblWelcomeMsg = By.xpath("//div[@class='account']//strong");
 	private final By _lblLoginErrMsg = By.xpath("//p[@class='message error LoginForm']");
 	private final By _linkResetPassword = By.xpath("//a[@href='/Account/ForgotPassword.cshtml']");
-	//private final By _titlePage = By.xpath("//div[@id='content']//h1");
 	
 	// Methods
 	public HomePage login(String username, String password) {
@@ -22,34 +21,6 @@ public class LoginPage extends GeneralPage {
 		Utilities.click(_btnLogin);
 		return new HomePage();
 	}
-	
-//	public String getPageTitle () {
-//		return Utilities.getText(_titlePage);
-//	}
-//	
-//	public static String getTextOfElement (By locator) {
-//		return Utilities.getText(locator);
-//	}
-//	
-//	@SuppressWarnings("unchecked")
-//	public <T extends GeneralPage> T login(String username, String password) {
-//	    Utilities.sendKeys(_txtUsername, username);
-//	    Utilities.sendKeys(_txtPassword, password);
-//	    Utilities.click(_btnLogin);
-//
-//	    try {
-//	    	 Utilities.waitForTitleExist("Safe Railway");
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//	    
-//	    String titlePage = this.getPageTitle();
-//	    if (titlePage.contains("Welcome to Safe Railway")) {
-//	        return (T) new HomePage();
-//	    } else {
-//	        return (T) this;
-//	    }
-//	}
 	
 	public String getWelcomeMessage() {
 		return Utilities.getText(_lblWelcomeMsg);

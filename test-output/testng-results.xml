@@ -2,55 +2,49 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-12T16:21:51 GMT+07:00" name="Default suite" finished-at="2026-02-12T16:22:17 GMT+07:00" duration-ms="25533">
+  <suite started-at="2026-02-23T13:55:36 GMT+07:00" name="Default suite" finished-at="2026-02-23T13:56:39 GMT+07:00" duration-ms="62735">
     <groups>
     </groups>
-    <test started-at="2026-02-12T16:21:51 GMT+07:00" name="Default test" finished-at="2026-02-12T16:22:17 GMT+07:00" duration-ms="25533">
-      <class name="Railway.TestFunction">
-        <test-method signature="TC()[pri:0, instance:Railway.TestFunction@3d285d7e]" started-at="2026-02-12T16:21:51 GMT+07:00" name="TC" finished-at="2026-02-12T16:22:17 GMT+07:00" duration-ms="25453" status="FAIL">
-          <exception class="org.openqa.selenium.InvalidSelectorException">
+    <test started-at="2026-02-23T13:55:36 GMT+07:00" name="Default test" finished-at="2026-02-23T13:56:39 GMT+07:00" duration-ms="62735">
+      <class name="Railway.CancelBookingTest">
+        <test-method is-config="true" signature="beforeMethod(java.lang.String)[pri:0, instance:Railway.CancelBookingTest@7d8704ef]" started-at="2026-02-23T13:55:36 GMT+07:00" name="beforeMethod" finished-at="2026-02-23T13:55:39 GMT+07:00" duration-ms="2103" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method signature="TC16()[pri:0, instance:Railway.CancelBookingTest@7d8704ef]" started-at="2026-02-23T13:55:39 GMT+07:00" name="TC16" finished-at="2026-02-23T13:56:39 GMT+07:00" duration-ms="60399" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[invalid selector: Unable to locate an element with the xpath expression //form[@action='signup']//input[@type='text] because of the following error:
-SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//form[@action='signup']//input[@type='text]' is not a valid XPath expression.
-  (Session info: chrome=144.0.7559.133)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidselectorexception
+              <![CDATA[Expected condition failed: waiting for presence of element found by By.xpath: //div[@id='menu']//a[span[text()='Book ticket']]
+(tried for 60 seconds with 500 milliseconds interval)
 Build info: version: '4.40.0', revision: 'b3333f1'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [d8c978823f5619421e483e3eb3a82b29, findElement {value=//form[@action='signup']//input[@type='text], using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56551}, goog:processID: 10428, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56551/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: d8c978823f5619421e483e3eb3a82b29]]>
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49862}, goog:processID: 31228, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49862/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ddc651bc0bb99c3a74264e16da66d178]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression //form[@action='signup']//input[@type='text] because of the following error:
-SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//form[@action='signup']//input[@type='text]' is not a valid XPath expression.
-  (Session info: chrome=144.0.7559.133)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidselectorexception
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element found by By.xpath: //div[@id='menu']//a[span[text()='Book ticket']]
+(tried for 60 seconds with 500 milliseconds interval)
 Build info: version: '4.40.0', revision: 'b3333f1'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.2'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [d8c978823f5619421e483e3eb3a82b29, findElement {value=//form[@action='signup']//input[@type='text], using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56551}, goog:processID: 10428, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56551/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: d8c978823f5619421e483e3eb3a82b29
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:169)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:142)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:223)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:601)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:166)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:424)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:418)
-at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:195)
-at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:190)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:207)
-at Common.Utilities.waitForElementToBeStable(Utilities.java:46)
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 144.0.7559.133, chrome: {chromedriverVersion: 144.0.7559.133 (7da823b1d59..., userDataDir: C:\Users\HP\AppData\Local\T...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49862}, goog:processID: 31228, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49862/devtoo..., se:cdpVersion: 144.0.7559.133, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ddc651bc0bb99c3a74264e16da66d178
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+at Common.Utilities.waitForElementToBeStable(Utilities.java:47)
 at Common.Utilities.waitAndScrollToElement(Utilities.java:33)
-at Common.Utilities.waitForElementToBeClickable(Utilities.java:52)
-at Common.Utilities.sendKeys(Utilities.java:79)
-at Railway.TestFunction.TC(TestFunction.java:24)
+at Common.Utilities.waitForElementToBeClickable(Utilities.java:53)
+at Common.Utilities.click(Utilities.java:86)
+at Railway.GeneralPage.gotoTab(GeneralPage.java:15)
+at Railway.CancelBookingTest.TC16(CancelBookingTest.java:29)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -79,11 +73,15 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.InvalidSelectorException -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC -->
-      </class> <!-- Railway.TestFunction -->
+        </test-method> <!-- TC16 -->
+        <test-method is-config="true" signature="afterMethod()[pri:0, instance:Railway.CancelBookingTest@7d8704ef]" started-at="2026-02-23T13:56:39 GMT+07:00" name="afterMethod" finished-at="2026-02-23T13:56:39 GMT+07:00" duration-ms="172" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- Railway.CancelBookingTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
